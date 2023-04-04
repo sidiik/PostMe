@@ -1,5 +1,9 @@
-using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+using MediatR;
 using ReactivitiesV1.Data;
+using ReactivitiesV1.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
@@ -10,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(typeof(GetAll.Handler));
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 using var scope = app.Services.CreateScope();

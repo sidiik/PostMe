@@ -67,3 +67,6 @@ C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\obj\Debug\net7.0\r
 C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\obj\Debug\net7.0\ReactivitiesV1.pdb
 C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\obj\Debug\net7.0\ReactivitiesV1.genruntimeconfig.cache
 C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\obj\Debug\net7.0\ref\ReactivitiesV1.dll
+C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\bin\Debug\net7.0\MediatR.dll
+C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Users\sidii\Desktop\Reactivity Project\Code\ReactivitiesV1\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll

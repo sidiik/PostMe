@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "DYHyR5GysIMFUzzxEUF+LL4OedaZZyYaj0nWhOjDw9Y/0Mhl4HMPnOtmVl4UF+LW26RgiTeCS1lSxaeX0FTzuw==",
+  "dgSpecHash": "08//fAuJoegcQlP+93G/QKH3yOtAz5HpGNv/Ak5/yPenoN/adf0qOFVc0Xlvtlgp0GG0MlwnRruRDMV2EiSQeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sidii\\Desktop\\Reactivity Project\\Code\\ReactivitiesV1\\ReactivitiesV1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sidii\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\sidii\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\sidii\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\sidii\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\sidii\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\sidii\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.4\\microsoft.data.sqlite.core.7.0.4.nupkg.sha512",
     "C:\\Users\\sidii\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.4\\microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
