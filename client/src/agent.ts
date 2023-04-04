@@ -3,6 +3,22 @@ import { Post } from './types/PostTypes';
 
 axios.defaults.baseURL = 'http://localhost:5000/api/v1';
 
+const sleep = (delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+};
+
+axios.interceptors.response.use(async (response) => {
+  try {
+    await sleep(2000);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return Promise.reject(error);
+  }
+});
+
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
