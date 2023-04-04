@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
+app.UseCors("CorsPolicy");
 // Configure the HTTP request pipeline.
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;

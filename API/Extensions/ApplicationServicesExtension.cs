@@ -20,6 +20,10 @@ namespace ReactivitiesV1.Extensions
             services.AddSwaggerGen();
             services.AddMediatR(typeof(GetAll.Handler));
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173"));
+            });
 
             return services;
         }
