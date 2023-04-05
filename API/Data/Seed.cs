@@ -1,15 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using API.Domain;
+using Microsoft.AspNetCore.Identity;
 using ReactivitiesV1.Domain;
 namespace ReactivitiesV1.Data
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
+
+            if (!userManager.Users.Any())
+            {
+                var users = new List<AppUser>
+                {
+                      new AppUser {UserName = "sidiq",DisplayName = "Sidiiq Cumar", Email = "sidiikpro@gmail.com"},
+                        new AppUser {UserName = "ahmed",DisplayName = "ahmed Cumar", Email = "ahmedcumar@gmail.com"}
+                };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+
             if (context.Posts.Any()) return;
+
             var posts = new List<Post>()
             {
                 new Post {
