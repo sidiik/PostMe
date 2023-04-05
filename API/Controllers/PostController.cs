@@ -1,3 +1,5 @@
+using System.Net;
+using API.Core;
 using ReactivitiesV1.Domain;
 using ReactivitiesV1.DTO;
 using ReactivitiesV1.DTO.Post;
@@ -14,9 +16,12 @@ public class PostsController : BaseApiController
         return await Medaitor.Send(new GetAll.Query());
     }
     [HttpGet("{id}")]
-    public async Task<ActionResult<Post>> GetOnePost(int id)
+    public async Task<IActionResult> GetOnePost(int id)
     {
-        return await Medaitor.Send(new PostDetails.Query { Id = id });
+        var res = await Medaitor.Send(new PostDetails.Query { Id = id });
+
+        return HandleResponse(res);
+
     }
     [HttpPost("new")]
     public async Task<IActionResult> CreatePost(ModifyPost post)
