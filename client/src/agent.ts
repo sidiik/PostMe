@@ -30,6 +30,7 @@ const requests = {
 
 const Posts = {
   all: requests.get<Post[]>('/posts'),
+  getPost: (id: number) => requests.get<Post>(`/posts/${id}`),
 };
 
 export const agents = {

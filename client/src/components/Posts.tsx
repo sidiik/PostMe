@@ -13,12 +13,12 @@ const Posts = () => {
   }, []);
 
   return (
-    <div className='w-[60%] mx-auto'>
+    <div className='mx-auto'>
       <h3 className='text-2xl font-bold my-3'>Feed</h3>
       {!posts.length && <PostSkeleton />}
       <div className='mx-auto'>
-        {posts.map((post) => (
-          <PostItem post={post} />
+        {posts.map((post, i) => (
+          <PostItem key={i} post={post} />
         ))}
       </div>
     </div>
