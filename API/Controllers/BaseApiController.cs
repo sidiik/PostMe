@@ -1,6 +1,7 @@
 using System.Net;
 using API.Core;
 using MediatR;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace ReactivitiesV1.Controllers;
 
@@ -14,19 +15,21 @@ public class BaseApiController : ControllerBase
 
     protected ActionResult HandleResponse<T>(Result<T> res)
     {
-        if (!res.IsSuccess && res.Data is null)
-        {
-            res.code = (int)HttpStatusCode.NotFound;
-            return NotFound(res);
-
-        };
+        res.href = HttpContext.Request.GetDisplayUrl();
+        res.StatusCode = HttpStatusCode.OK;
         if (res.IsSuccess && res.Data is not null)
         {
-            res.code = (int)HttpStatusCode.OK;
             return Ok(res);
         }
+        if (!res.IsSuccess && res.Data is null)
+        {
+            res.StatusCode = HttpStatusCode.NotFound;
+            return NotFound(res);
+        }
 
+        res.StatusCode = HttpStatusCode.BadRequest;
         return BadRequest();
+
     }
 }
 

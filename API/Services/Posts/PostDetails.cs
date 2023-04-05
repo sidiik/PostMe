@@ -27,8 +27,7 @@ namespace ReactivitiesV1.Services
             public async Task<Result<Post>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var post = await _context.Posts.FindAsync(request.Id);
-
-                if (post is null) return Result<Post>.Failure("Post is not found");
+                if (post is null) return Result<Post>.Failure("We're sorry, but the post you are looking for is no longer available");
 
                 return Result<Post>.Success(post);
             }
