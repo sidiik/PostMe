@@ -1,4 +1,6 @@
+using API.Services.Posts;
 using AutoMapper;
+using FluentValidation;
 using MediatR;
 using ReactivitiesV1.Data;
 using ReactivitiesV1.Domain;
@@ -12,6 +14,17 @@ namespace ReactivitiesV1.Services
         {
             public ModifyPost Post { get; set; }
         }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+
+            public CommandValidator()
+            {
+                RuleFor(x => x.Post).SetValidator(new CreatePostValidotr());
+            }
+
+        }
+
         public class Handler : IRequestHandler<Command>
         {
             private readonly IMapper _mapper;

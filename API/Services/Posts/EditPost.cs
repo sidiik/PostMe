@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Services.Posts;
 using AutoMapper;
+using FluentValidation;
 using MediatR;
 using ReactivitiesV1.Data;
 using ReactivitiesV1.Domain;
@@ -18,6 +20,13 @@ namespace ReactivitiesV1.Services.Posts
             public int Id { get; set; }
         }
 
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Post).SetValidator(new EditPostValidator());
+            }
+        }
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
@@ -30,8 +39,8 @@ namespace ReactivitiesV1.Services.Posts
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                request.Post.LastUpdatedAt = DateTime.Now;
                 var editingPost = await _context.Posts.FindAsync(request.Id);
+                editingPost.LastUpdatedAt = DateTime.Now;
                 _mapper.Map(request.Post, editingPost);
                 await _context.SaveChangesAsync();
 

@@ -2,6 +2,8 @@ using MediatR;
 using ReactivitiesV1.Core;
 using ReactivitiesV1.Data;
 using ReactivitiesV1.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace ReactivitiesV1.Extensions
 {
@@ -24,6 +26,9 @@ namespace ReactivitiesV1.Extensions
             {
                 opt.AddPolicy("CorsPolicy", policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173"));
             });
+
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<CreatePost>();
 
             return services;
         }
