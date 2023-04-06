@@ -10,6 +10,7 @@ namespace ReactivitiesV1.Controllers;
 public class PostsController : BaseApiController
 {
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAllPosts()
     {
@@ -18,7 +19,7 @@ public class PostsController : BaseApiController
         return HandleResponse(res);
 
     }
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<ActionResult<Post>> GetOnePost(int id)
     {
