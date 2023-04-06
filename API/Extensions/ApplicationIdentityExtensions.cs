@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Domain;
+using API.helpers;
 using ReactivitiesV1.Data;
 
 namespace API.Extensions
@@ -16,6 +17,8 @@ namespace API.Extensions
             {
                 opt.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<DataContext>();
+
+            services.AddScoped<TokenService>();
 
             return services;
         }
