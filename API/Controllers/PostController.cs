@@ -1,4 +1,5 @@
 using API.Core;
+using Microsoft.AspNetCore.Authorization;
 using ReactivitiesV1.Domain;
 using ReactivitiesV1.DTO;
 using ReactivitiesV1.DTO.Post;
@@ -17,6 +18,7 @@ public class PostsController : BaseApiController
         return HandleResponse(res);
 
     }
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Post>> GetOnePost(int id)
     {
