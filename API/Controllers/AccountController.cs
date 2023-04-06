@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Core;
 using API.Domain;
 using API.DTO.User;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace API.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/v1/[controller]")]
 public class AccountController : ControllerBase
@@ -21,6 +21,7 @@ public class AccountController : ControllerBase
 
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<AccountResult<UserDTO>>> Login(LoginDto userLogin)
     {
@@ -46,10 +47,10 @@ public class AccountController : ControllerBase
             DisplayName = user.DisplayName
         };
 
-        return AccountResult<UserDTO>.Success(userResult);
+        return AccountResult<UserDTO>.Success(CreateUserResult(user));
 
     }
-
+    [AllowAnonymous]
     [HttpPost("new")]
     public async Task<ActionResult<AccountResult<UserDTO>>> RegisterUser(RegisterDto registerUser)
     {
@@ -77,19 +78,32 @@ public class AccountController : ControllerBase
         if (result.Succeeded)
         {
 
-            return AccountResult<UserDTO>.Success(new UserDTO
-            {
-                Username = user.UserName,
-                Token = _token.GenerateToken(user),
-                DisplayName = user.DisplayName,
-                Image = null
-
-            });
+            return AccountResult<UserDTO>.Success(CreateUserResult(user));
         }
 
         return BadRequest(result);
 
     }
 
+    [Authorize]
+    [HttpGet]
+    public async Task<ActionResult<UserDTO>> Me()
+    {
+        var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+        return CreateUserResult(user);
+    }
+
+    private UserDTO CreateUserResult(AppUser user)
+    {
+
+        return new UserDTO
+        {
+            Username = user.UserName,
+            Token = _token.GenerateToken(user),
+            DisplayName = user.DisplayName,
+            Image = null
+
+        };
+    }
 }
 
